@@ -1,12 +1,544 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Andres BIM - Tienda Profesional</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ing. Andrés Bolaños | REVIT BIM MODELING</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        orbitron: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#00d4ff',
+                        secondary: '#0099cc',
+                        dark: '#0a0e1a',
+                        darker: '#050810',
+                        card: 'rgba(15, 23, 42, 0.6)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            'from': { boxShadow: '0 0 5px #00d4ff, 0 0 10px #00d4ff' },
+                            'to': { boxShadow: '0 0 20px #00d4ff, 0 0 30px #00d4ff' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0e1a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .hero-gradient {
+            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 204, 0.2) 100%);
+        }
+        
+        .portfolio-overlay {
+            background: linear-gradient(to top, rgba(10, 14, 26, 0.95) 0%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="text-2xl font-orbitron font-bold text-primary">AB</div>
+                    <div class="hidden sm:block">
+                        <span class="font-orbitron font-bold text-lg tracking-wider">ANDRÉS BOLAÑOS</span>
+                        <span class="block text-xs text-primary tracking-widest">REVIT BIM MODELING</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">INICIO</a>
+                    <a href="#tienda" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">TIENDA</a>
+                    <a href="#servicios" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">SERVICIOS</a>
+                    <a href="#portafolio" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">PORTAFOLIO</a>
+                    <a href="#sobre-mi" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">SOBRE MÍ</a>
+                    <a href="#contacto" class="px-6 py-2.5 bg-primary/10 border border-primary/50 text-primary hover:bg-primary hover:text-dark font-semibold rounded-full transition-all duration-300 text-sm">
+                        CONTACTO
+                    </a>
+                </div>
+
+                <button class="md:hidden text-primary text-2xl" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#inicio" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">INICIO</a>
+                <a href="#tienda" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">TIENDA</a>
+                <a href="#servicios" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">SERVICIOS</a>
+                <a href="#portafolio" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">PORTAFOLIO</a>
+                <a href="#sobre-mi" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">SOBRE MÍ</a>
+                <a href="#contacto" class="block px-3 py-3 text-primary font-semibold">CONTACTO</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center grid-bg pt-20 overflow-hidden">
+        <div class="absolute inset-0 hero-gradient pointer-events-none"></div>
+        
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8 animate-float">
+                <div class="w-32 h-32 md:w-40 md:h-40 mx-auto bg-primary/20 rounded-full flex items-center justify-center border-2 border-primary/50">
+                    <span class="text-6xl md:text-7xl font-orbitron font-bold text-primary">AB</span>
+                </div>
+            </div>
+            
+            <h1 class="font-orbitron text-5xl md:text-7xl font-black mb-4 tracking-tight neon-text">
+                BIMTEK <span class="text-primary">SOLUTIONS</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-400 mb-2 font-light tracking-wide">
+                Especialista en BIM & Automatización
+            </p>
+            
+            <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
+            
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+                Soluciones BIM Profesionales<br>
+                <span class="text-primary">para tu Proyecto</span>
+            </h2>
+            
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Hola, soy <strong class="text-white">Andrés Bolaños Pérez</strong>, Ingeniero Civil especializado en BIM. 
+                Ofrezco familias Revit, scripts Dynamo y plantillas profesionales para acelerar tu flujo de trabajo BIM.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#tienda" class="px-8 py-4 btn-primary text-dark font-bold rounded-full flex items-center gap-2 text-lg">
+                    <i class="fas fa-shopping-cart"></i> Ver Tienda BIM
+                </a>
+                <a href="https://wa.me/573105173583" target="_blank" class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-full transition-all duration-300 flex items-center gap-2 text-lg">
+                    <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                </a>
+            </div>
+
+            <div class="mt-12 flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+                <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-primary"></i> Santa Marta, Colombia</span>
+                <span class="flex items-center gap-2"><i class="fas fa-phone text-primary"></i> (+57) 310 517 35 83</span>
+                <span class="flex items-center gap-2"><i class="fas fa-envelope text-primary"></i> andres.bim@hotmail.com</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tienda Section -->
+    <section id="tienda" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4">TIENDA <span class="text-primary">BIM</span></h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                    Recursos BIM Profesionales
+                </p>
+                <p class="text-gray-500 mt-2">Descubre nuestra colección de familias Revit, scripts Dynamo y plantillas diseñadas para optimizar tu flujo de trabajo BIM.</p>
+            </div>
+
+            <!-- Proceso de Compra -->
+            <div class="glass rounded-2xl p-6 mb-12 border-l-4 border-primary">
+                <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-primary">
+                    <i class="fas fa-shopping-bag"></i>
+                    ¿Cómo comprar?
+                </h3>
+                <div class="grid md:grid-cols-4 gap-4 text-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">1</div>
+                        <span class="text-gray-300">Selecciona tus productos</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">2</div>
+                        <span class="text-gray-300">Paga vía PayPal</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">3</div>
+                        <span class="text-gray-300">Envía comprobante por WhatsApp</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">4</div>
+                        <span class="text-gray-300">Recibe tus archivos en 24h</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Producto 1 -->
+                <div class="glass rounded-2xl overflow-hidden card-hover group">
+                    <div class="h-56 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-cubes text-6xl text-primary/40 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute top-4 right-4 bg-primary text-dark text-xs font-bold px-3 py-1 rounded-full">POPULAR</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Pack Familias MEP</h3>
+                        <p class="text-gray-400 text-sm mb-4">50 familias Revit de instalaciones mecánicas, eléctricas y sanitarias listas para usar.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-3xl font-bold text-primary">$25</span>
+                            <span class="text-gray-500 text-sm">USD</span>
+                        </div>
+                        <button onclick="comprar('Pack Familias MEP', 25)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="glass rounded-2xl overflow-hidden card-hover group">
+                    <div class="h-56 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                        <i class="fas fa-code text-6xl text-purple-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Scripts Dynamo Pro</h3>
+                        <p class="text-gray-400 text-sm mb-4">20 scripts automatizados para modelado y extracción de datos en Revit.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-3xl font-bold text-primary">$35</span>
+                            <span class="text-gray-500 text-sm">USD</span>
+                        </div>
+                        <button onclick="comprar('Scripts Dynamo Pro', 35)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="glass rounded-2xl overflow-hidden card-hover group">
+                    <div class="h-56 bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center">
+                        <i class="fas fa-file-alt text-6xl text-green-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Plantilla Revit 2024</h3>
+                        <p class="text-gray-400 text-sm mb-4">Template completo con vistas configuradas, parámetros y familias base profesionales.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-3xl font-bold text-primary">$45</span>
+                            <span class="text-gray-500 text-sm">USD</span>
+                        </div>
+                        <button onclick="comprar('Plantilla Revit 2024', 45)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="glass rounded-2xl overflow-hidden card-hover group">
+                    <div class="h-56 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
+                        <i class="fas fa-hospital text-6xl text-orange-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Familias Hospitalarias</h3>
+                        <p class="text-gray-400 text-sm mb-4">Equipamiento médico y sistemas especializados para centros de salud BIM.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-3xl font-bold text-primary">$55</span>
+                            <span class="text-gray-500 text-sm">USD</span>
+                        </div>
+                        <button onclick="comprar('Familias Hospitalarias', 55)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 5 -->
+                <div class="glass rounded-2xl overflow-hidden card-hover group">
+                    <div class="h-56 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-road text-6xl text-indigo-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Pack Infraestructura Vial</h3>
+                        <p class="text-gray-400 text-sm mb-4">Familias especializadas para carreteras, puentes y señalización vial.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-3xl font-bold text-primary">$40</span>
+                            <span class="text-gray-500 text-sm">USD</span>
+                        </div>
+                        <button onclick="comprar('Pack Infraestructura Vial', 40)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 6 - Premium -->
+                <div class="glass rounded-2xl overflow-hidden card-hover group border-2 border-primary/50 relative">
+                    <div class="absolute top-0 right-0 bg-primary text-dark text-xs font-bold px-4 py-1 rounded-bl-lg z-10">MEJOR VALOR</div>
+                    <div class="h-56 bg-gradient-to-br from-primary/30 to-purple-600/30 flex items-center justify-center">
+                        <i class="fas fa-crown text-6xl text-yellow-400/60 group-hover:scale-110 transition-transform duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Pack Completo Profesional</h3>
+                        <p class="text-gray-400 text-sm mb-4">Incluye todos los productos anteriores + soporte prioritario + actualizaciones de por vida.</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-3xl font-bold text-primary">$150</span>
+                                <span class="text-gray-500 text-sm line-through ml-2">$200</span>
+                            </div>
+                            <span class="text-green-400 text-xs font-bold bg-green-400/10 px-2 py-1 rounded">AHORRA 25%</span>
+                        </div>
+                        <button onclick="comprar('Pack Completo Profesional', 150)" class="w-full py-3 btn-primary text-dark font-bold rounded-lg flex items-center justify-center gap-2">
+                            <i class="fas fa-crown"></i> Comprar Ahora
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-gray-400 mb-4">¿Necesitas algo personalizado?</p>
+                <a href="https://wa.me/573105173583?text=Hola%20Andrés,%20necesito%20un%20producto%20personalizado%20BIM" target="_blank" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors text-lg">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    Contáctame para desarrollar soluciones a tu medida
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-24 bg-darker/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4">NUESTROS <span class="text-primary">SERVICIOS</span></h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-gray-400">Soluciones BIM Integrales</p>
+                <p class="text-gray-500 mt-2 max-w-2xl mx-auto">Ofrecemos servicios especializados para implementar y optimizar la metodología BIM en tus proyectos de construcción.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cube text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Modelado BIM Avanzado</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Desarrollo de modelos 3D inteligentes en Revit para arquitectura, estructuras e instalaciones MEP con alto nivel de detalle.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Automatización Dynamo</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Scripts personalizados para automatizar tareas repetitivas y optimizar flujos de trabajo en Revit.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-object-group text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Desarrollo de Familias</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Creación de familias Revit paramétricas personalizadas según tus necesidades específicas de proyecto.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-clipboard-check text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Coordinación BIM</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Detección de interferencias y coordinación multidisciplinar para evitar conflictos en obra.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-file-alt text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Plantillas Profesionales</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Plantillas de Revit configuradas con estándares de empresa y automatizaciones integradas.</p>
+                </div>
+
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-3xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Capacitación BIM</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Formación personalizada en Revit, Dynamo y metodología BIM para equipos de trabajo.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center glass rounded-2xl p-8 max-w-3xl mx-auto">
+                <h3 class="text-xl font-bold mb-2">¿Necesitas un servicio personalizado?</h3>
+                <p class="text-gray-400 mb-4">Contáctanos y desarrollamos una solución a tu medida.</p>
+                <a href="https://wa.me/573105173583" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-full transition-all duration-300">
+                    <i class="fab fa-whatsapp"></i> Hablar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portafolio Section -->
+    <section id="portafolio" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4">PROYECTOS <span class="text-primary">DESTACADOS</span></h2>
+                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-400">Conoce algunos de los proyectos donde hemos implementado soluciones BIM exitosas.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Hospital Central', 'Centro médico de alta complejidad con 200 camas. Coordinación BIM integral de todas las especialidades MEP, sistemas hidrosanitarios y protección contra incendios.', 'hospital')">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-blue-800 flex items-center justify-center">
+                        <i class="fas fa-hospital-alt text-8xl text-white/20"></i>
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Hospital Central</h3>
+                        <p class="text-gray-300 text-sm">Coordinación BIM MEP - Hidrosanitario - PCI</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Conjunto Residencial', 'Complejo de 5 torres residenciales con 150 apartamentos. Modelado arquitectónico y estructural completo con coordinación de instalaciones.', 'residential')">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-800 flex items-center justify-center">
+                        <i class="fas fa-building text-8xl text-white/20"></i>
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Conjunto Residencial</h3>
+                        <p class="text-gray-300 text-sm">5 torres - 150 apartamentos - Modelado integral</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Vía Express', 'Proyecto de infraestructura vial de 15km incluyendo puentes, intercambios y señalización. Modelado BIM para coordinación de obra.', 'road')">
+                    <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-teal-800 flex items-center justify-center">
+                        <i class="fas fa-road text-8xl text-white/20"></i>
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Vía Express</h3>
+                        <p class="text-gray-300 text-sm">15km infraestructura vial - Puentes e intercambios</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Centro Comercial', 'Plaza comercial con 50 locales, estacionamiento subterráneo y sistemas MEP complejos. Coordinación BIM y detección de interferencias.', 'commercial')">
+                    <div class="absolute inset-0 bg-gradient-to-br from-orange-600 to-red-800 flex items-center justify-center">
+                        <i class="fas fa-store text-8xl text-white/20"></i>
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Centro Comercial</h3>
+                        <p class="text-gray-300 text-sm">50 locales - Coordinación MEP - Estacionamiento</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Torre de Oficinas', 'Edificio corporativo de 25 pisos con sistemas inteligentes y certificación LEED. Modelado BIM 7D para facility management.', 'office')">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-blue-900 flex items-center justify-center">
+                        <i class="fas fa-city text-8xl text-white/20"></i>
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Torre de Oficinas</h3>
+                        <p class="text-gray-300 text-sm">25 pisos - LEED - BIM 7D - Facility Management</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Clínica Especializada', 'Centro de especialidades médicas con equipamiento de alta tecnología. Especialización en sistemas hidrosanitarios y gases medicinales.', 'clinic')">
+                    <div class="absolute inset-0 bg-gradient-to-br from-teal-600 to-cyan-800 flex items-center justify-center">
+                        <i class="fas fa-clinic-medical text-8xl text-white/20"></i>
+                    </div>
+                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-bold text-primary mb-2">Clínica Especializada</h3>
+                        <p class="text-gray-300 text-sm">Equipamiento médico - Gases medicinales - PCI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí Section -->
+    <section id="sobre-mi" class="py-24 bg-darker/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-6">SOBRE <span class="text-primary">MÍ</span></h2>
+                    <div class="w-24 h-1 bg-primary rounded-full mb-8"></div>
+                    
+                    <h3 class="text-2xl font-bold mb-4 text-white">Especialista BIM con Pasión por la Innovación</h3>
+                    
+                    <div class="space-y-4 text-gray-300 leading-relaxed mb-8">
+                        <p>
+                            Soy <strong class="text-primary">Andrés Bolaños Pérez</strong>, Ingeniero Civil especializado en metodología BIM con más de 10 años de experiencia en el sector de la construcción. 
+                        </p>
+                        <p>
+                            He liderado la implementación BIM en proyectos de diversa escala, desde <strong>edificaciones residenciales</strong> hasta <strong>grandes infraestructuras viales</strong> y <strong>centros hospitalarios</strong>.
+                        </p>
+                        <p>
+                            Mi enfoque combina el conocimiento técnico con la programación visual y textual para crear soluciones automatizadas que optimizan los flujos de trabajo BIM. He desarrollado cientos de familias personalizadas y scripts de automatización.
+                        </p>
+                    </div>
+
+                    <div class="glass rounded-xl p-6 mb-6">
+                        <h4 class="font-bold text-primary mb-4 flex items-center gap-2">
+                            <i class="fas fa-user-graduate"></i> Credenciales
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-300">
+                            <li><i class="fas fa-check text-primary mr-2"></i>Ingeniero Civil</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i>Esp. Gerencia de Proyectos</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i>Esp. Project Management</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i>Coordinador BIM_CIP</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i>Master BIM Manager en Edificaciones</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i>Revit MEP Expert</li>
+                            <li><i class="fas fa-check text-primary mr-2"></i>Especialista Hidrosanitario y PCI</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass rounded-lg p-4 text-center">
+                            <i class="
