@@ -1,501 +1,503 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ing. Andrés Bolaños | REVIT BIM MODELING</title>
+    <title>Andres BIM - Tienda Profesional</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        orbitron: ['Orbitron', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#00d4ff',
-                        secondary: '#0099cc',
-                        dark: '#0a0e1a',
-                        darker: '#050810',
-                        card: 'rgba(15, 23, 42, 0.6)',
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        glow: {
-                            'from': { boxShadow: '0 0 5px #00d4ff, 0 0 10px #00d4ff' },
-                            'to': { boxShadow: '0 0 20px #00d4ff, 0 0 30px #00d4ff' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        body {
-            background-color: #0a0e1a;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .glass {
-            background: rgba(15, 23, 42, 0.6);
+        .glass-effect {
+            background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 212, 255, 0.1);
         }
-        
-        .neon-text {
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3);
-        }
-        
-        .grid-bg {
-            background-image: 
-                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-        
         .hero-gradient {
-            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
         }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-        
         .card-hover {
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
         .card-hover:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.15);
         }
-        
-        .service-icon {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(0, 153, 204, 0.2) 100%);
+        .nav-link {
+            position: relative;
         }
-        
-        .portfolio-overlay {
-            background: linear-gradient(to top, rgba(10, 14, 26, 0.95) 0%, transparent 100%);
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #06b6d4;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .grid-pattern {
+            background-image: radial-gradient(circle at 1px 1px, rgba(6, 182, 212, 0.15) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .tech-border {
+            position: relative;
+            overflow: hidden;
+        }
+        .tech-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="bg-slate-900 text-white overflow-x-hidden">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass border-b border-white/10">
+    <nav class="fixed w-full z-50 glass-effect border-b border-slate-700/50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-3">
-                    <div class="text-2xl font-orbitron font-bold text-primary">AB</div>
-                    <div class="hidden sm:block">
-                        <span class="font-orbitron font-bold text-lg tracking-wider">ANDRÉS BOLAÑOS</span>
-                        <span class="block text-xs text-primary tracking-widest">REVIT BIM MODELING</span>
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                        <i class="fas fa-building text-white text-lg"></i>
                     </div>
+                    <span class="text-xl font-bold tracking-tight">Andres<span class="text-cyan-400">BIM</span></span>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#inicio" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">INICIO</a>
-                    <a href="#tienda" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">TIENDA</a>
-                    <a href="#servicios" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">SERVICIOS</a>
-                    <a href="#portafolio" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">PORTAFOLIO</a>
-                    <a href="#sobre-mi" class="text-gray-300 hover:text-primary transition-colors text-sm font-medium tracking-wide">SOBRE MÍ</a>
-                    <a href="#contacto" class="px-6 py-2.5 bg-primary/10 border border-primary/50 text-primary hover:bg-primary hover:text-dark font-semibold rounded-full transition-all duration-300 text-sm">
-                        CONTACTO
+                    <a href="#inicio" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Inicio</a>
+                    <a href="#tienda" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Tienda</a>
+                    <a href="#servicios" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Servicios</a>
+                    <a href="#portafolio" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Portafolio</a>
+                    <a href="#sobre-mi" class="nav-link text-sm font-medium text-slate-300 hover:text-white transition-colors">Sobre Mí</a>
+                    <a href="#contacto" class="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/25 transition-all transform hover:scale-105">
+                        Contactar
                     </a>
                 </div>
 
-                <button class="md:hidden text-primary text-2xl" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars"></i>
+                <button class="md:hidden text-slate-300 hover:text-white" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/10">
-            <div class="px-4 pt-2 pb-6 space-y-1">
-                <a href="#inicio" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">INICIO</a>
-                <a href="#tienda" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">TIENDA</a>
-                <a href="#servicios" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">SERVICIOS</a>
-                <a href="#portafolio" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">PORTAFOLIO</a>
-                <a href="#sobre-mi" class="block px-3 py-3 text-gray-300 hover:text-primary hover:bg-white/5 rounded-lg transition-colors">SOBRE MÍ</a>
-                <a href="#contacto" class="block px-3 py-3 text-primary font-semibold">CONTACTO</a>
+        <div id="mobile-menu" class="hidden md:hidden glass-effect border-t border-slate-700/50">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#inicio" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-md">Inicio</a>
+                <a href="#tienda" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-md">Tienda</a>
+                <a href="#servicios" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-md">Servicios</a>
+                <a href="#portafolio" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-md">Portafolio</a>
+                <a href="#sobre-mi" class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-md">Sobre Mí</a>
+                <a href="#contacto" class="block px-3 py-2 text-base font-medium text-cyan-400 hover:text-cyan-300">Contactar</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center grid-bg pt-20 overflow-hidden">
-        <div class="absolute inset-0 hero-gradient pointer-events-none"></div>
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden pt-20">
+        <div class="blob bg-cyan-500 w-96 h-96 rounded-full top-20 -left-20"></div>
+        <div class="blob bg-blue-600 w-80 h-80 rounded-full bottom-20 -right-20 animation-delay-2000"></div>
+        <div class="blob bg-purple-600 w-64 h-64 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animation-delay-4000"></div>
         
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
-        </div>
-
+        <div class="absolute inset-0 grid-pattern opacity-30"></div>
+        
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-8 animate-float">
-                <div class="w-32 h-32 md:w-40 md:h-40 mx-auto bg-primary/20 rounded-full flex items-center justify-center border-2 border-primary/50">
-                    <span class="text-6xl md:text-7xl font-orbitron font-bold text-primary">AB</span>
-                </div>
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-slate-800/50 border border-cyan-500/30 mb-8 backdrop-blur-sm reveal">
+                <span class="flex h-2 w-2 rounded-full bg-cyan-400 mr-2 animate-pulse"></span>
+                <span class="text-sm font-medium text-cyan-400">Especialista en BIM & Automatización</span>
             </div>
             
-            <h1 class="font-orbitron text-5xl md:text-7xl font-black mb-4 tracking-tight neon-text">
-                BIMTEK <span class="text-primary">SOLUTIONS</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight reveal">
+                Soluciones BIM <span class="gradient-text">Profesionales</span><br>para tu Proyecto
             </h1>
             
-            <p class="text-xl md:text-2xl text-gray-400 mb-2 font-light tracking-wide">
-                Especialista en BIM & Automatización
+            <p class="text-xl md:text-2xl text-slate-400 mb-10 max-w-3xl mx-auto leading-relaxed reveal">
+                Hola, soy Andres. Especialista en BIM con más de 10 años de experiencia. 
+                Ofrezco familias Revit, scripts Dynamo y plantillas profesionales para 
+                acelerar tu flujo de trabajo BIM.
             </p>
             
-            <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-8"></div>
-            
-            <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                Soluciones BIM Profesionales<br>
-                <span class="text-primary">para tu Proyecto</span>
-            </h2>
-            
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                Hola, soy <strong class="text-white">Andrés Bolaños Pérez</strong>, Ingeniero Civil especializado en BIM. 
-                Ofrezco familias Revit, scripts Dynamo y plantillas profesionales para acelerar tu flujo de trabajo BIM.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#tienda" class="px-8 py-4 btn-primary text-dark font-bold rounded-full flex items-center gap-2 text-lg">
-                    <i class="fas fa-shopping-cart"></i> Ver Tienda BIM
+            <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
+                <a href="#tienda" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-lg font-semibold hover:shadow-xl hover:shadow-cyan-500/25 transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                    <i class="fas fa-shopping-cart"></i>
+                    Tienda BIM
                 </a>
-                <a href="https://wa.me/573105173583" target="_blank" class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-full transition-all duration-300 flex items-center gap-2 text-lg">
-                    <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+                <a href="#servicios" class="px-8 py-4 border-2 border-slate-600 rounded-full text-lg font-semibold hover:border-cyan-500 hover:text-cyan-400 transition-all flex items-center justify-center gap-2">
+                    <i class="fas fa-cogs"></i>
+                    Nuestros Servicios
                 </a>
             </div>
 
-            <div class="mt-12 flex flex-wrap justify-center gap-6 text-sm text-gray-500">
-                <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-primary"></i> Santa Marta, Colombia</span>
-                <span class="flex items-center gap-2"><i class="fas fa-phone text-primary"></i> (+57) 310 517 35 83</span>
-                <span class="flex items-center gap-2"><i class="fas fa-envelope text-primary"></i> andres.bim@hotmail.com</span>
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto reveal">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400 mb-1">500+</div>
+                    <div class="text-sm text-slate-400">Familias Creadas</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400 mb-1">150+</div>
+                    <div class="text-sm text-slate-400">Scripts Dynamo</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400 mb-1">50+</div>
+                    <div class="text-sm text-slate-400">Proyectos</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-cyan-400 mb-1">10+</div>
+                    <div class="text-sm text-slate-400">Años Exp.</div>
+                </div>
             </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-slate-500 text-2xl"></i>
         </div>
     </section>
 
     <!-- Tienda Section -->
-    <section id="tienda" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4">TIENDA <span class="text-primary">BIM</span></h2>
-                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-                    Recursos BIM Profesionales
+    <section id="tienda" class="py-24 bg-slate-900 relative">
+        <div class="absolute inset-0 grid-pattern opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Recursos BIM <span class="gradient-text">Profesionales</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Descubre nuestra colección de familias Revit, scripts Dynamo y plantillas diseñadas para optimizar tu flujo de trabajo BIM.
                 </p>
-                <p class="text-gray-500 mt-2">Descubre nuestra colección de familias Revit, scripts Dynamo y plantillas diseñadas para optimizar tu flujo de trabajo BIM.</p>
-            </div>
-
-            <!-- Proceso de Compra -->
-            <div class="glass rounded-2xl p-6 mb-12 border-l-4 border-primary">
-                <h3 class="text-lg font-bold mb-4 flex items-center gap-2 text-primary">
-                    <i class="fas fa-shopping-bag"></i>
-                    ¿Cómo comprar?
-                </h3>
-                <div class="grid md:grid-cols-4 gap-4 text-sm">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">1</div>
-                        <span class="text-gray-300">Selecciona tus productos</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">2</div>
-                        <span class="text-gray-300">Paga vía PayPal</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">3</div>
-                        <span class="text-gray-300">Envía comprobante por WhatsApp</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">4</div>
-                        <span class="text-gray-300">Recibe tus archivos en 24h</span>
-                    </div>
-                </div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Producto 1 -->
-                <div class="glass rounded-2xl overflow-hidden card-hover group">
-                    <div class="h-56 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center relative overflow-hidden">
-                        <i class="fas fa-cubes text-6xl text-primary/40 group-hover:scale-110 transition-transform duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-primary text-dark text-xs font-bold px-3 py-1 rounded-full">POPULAR</div>
+                <div class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 card-hover tech-border reveal group">
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-cube text-6xl text-cyan-500/30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute top-4 right-4 bg-cyan-500 text-xs font-bold px-3 py-1 rounded-full">NUEVO</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pack Familias MEP</h3>
-                        <p class="text-gray-400 text-sm mb-4">50 familias Revit de instalaciones mecánicas, eléctricas y sanitarias listas para usar.</p>
+                        <h3 class="text-xl font-bold mb-2 text-white">Familias Revit MEP 2024</h3>
+                        <p class="text-slate-400 text-sm mb-4">Colección completa de familias paramétricas para instalaciones MEP. Incluye equipos HVAC, eléctricos y fontanería.</p>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-3xl font-bold text-primary">$25</span>
-                            <span class="text-gray-500 text-sm">USD</span>
+                            <span class="text-2xl font-bold text-cyan-400">€49.99</span>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
-                        <button onclick="comprar('Pack Familias MEP', 25)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        <button class="w-full py-3 bg-slate-700 hover:bg-cyan-600 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            <i class="fas fa-cart-plus"></i>
+                            Añadir al Carrito
                         </button>
                     </div>
                 </div>
 
                 <!-- Producto 2 -->
-                <div class="glass rounded-2xl overflow-hidden card-hover group">
-                    <div class="h-56 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                        <i class="fas fa-code text-6xl text-purple-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 card-hover tech-border reveal group">
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-code text-6xl text-purple-500/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Scripts Dynamo Pro</h3>
-                        <p class="text-gray-400 text-sm mb-4">20 scripts automatizados para modelado y extracción de datos en Revit.</p>
+                        <h3 class="text-xl font-bold mb-2 text-white">Pack Scripts Dynamo</h3>
+                        <p class="text-slate-400 text-sm mb-4">25 scripts automatizados para Revit. Desde generación de planos hasta extracción de cantidades automática.</p>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-3xl font-bold text-primary">$35</span>
-                            <span class="text-gray-500 text-sm">USD</span>
+                            <span class="text-2xl font-bold text-cyan-400">€79.99</span>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
                         </div>
-                        <button onclick="comprar('Scripts Dynamo Pro', 35)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        <button class="w-full py-3 bg-slate-700 hover:bg-cyan-600 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            <i class="fas fa-cart-plus"></i>
+                            Añadir al Carrito
                         </button>
                     </div>
                 </div>
 
                 <!-- Producto 3 -->
-                <div class="glass rounded-2xl overflow-hidden card-hover group">
-                    <div class="h-56 bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center">
-                        <i class="fas fa-file-alt text-6xl text-green-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 card-hover tech-border reveal group">
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-file-alt text-6xl text-green-500/30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute top-4 right-4 bg-green-500 text-xs font-bold px-3 py-1 rounded-full">POPULAR</div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Plantilla Revit 2024</h3>
-                        <p class="text-gray-400 text-sm mb-4">Template completo con vistas configuradas, parámetros y familias base profesionales.</p>
+                        <h3 class="text-xl font-bold mb-2 text-white">Template Proyecto BIM</h3>
+                        <p class="text-slate-400 text-sm mb-4">Template completo para Revit 2024 con vistas preconfiguradas, filtros, planos de impresión y estándares BIM.</p>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-3xl font-bold text-primary">$45</span>
-                            <span class="text-gray-500 text-sm">USD</span>
+                            <span class="text-2xl font-bold text-cyan-400">€59.99</span>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
-                        <button onclick="comprar('Plantilla Revit 2024', 45)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        <button class="w-full py-3 bg-slate-700 hover:bg-cyan-600 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            <i class="fas fa-cart-plus"></i>
+                            Añadir al Carrito
                         </button>
                     </div>
                 </div>
 
                 <!-- Producto 4 -->
-                <div class="glass rounded-2xl overflow-hidden card-hover group">
-                    <div class="h-56 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
-                        <i class="fas fa-hospital text-6xl text-orange-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 card-hover tech-border reveal group">
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-drafting-compass text-6xl text-orange-500/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Familias Hospitalarias</h3>
-                        <p class="text-gray-400 text-sm mb-4">Equipamiento médico y sistemas especializados para centros de salud BIM.</p>
+                        <h3 class="text-xl font-bold mb-2 text-white">Familias Arquitectónicas</h3>
+                        <p class="text-slate-400 text-sm mb-4">Biblioteca de mobiliario, acabados y elementos arquitectónicos de alta calidad para proyectos residenciales y comerciales.</p>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-3xl font-bold text-primary">$55</span>
-                            <span class="text-gray-500 text-sm">USD</span>
+                            <span class="text-2xl font-bold text-cyan-400">€39.99</span>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
                         </div>
-                        <button onclick="comprar('Familias Hospitalarias', 55)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        <button class="w-full py-3 bg-slate-700 hover:bg-cyan-600 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            <i class="fas fa-cart-plus"></i>
+                            Añadir al Carrito
                         </button>
                     </div>
                 </div>
 
                 <!-- Producto 5 -->
-                <div class="glass rounded-2xl overflow-hidden card-hover group">
-                    <div class="h-56 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 flex items-center justify-center">
-                        <i class="fas fa-road text-6xl text-indigo-400/40 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 card-hover tech-border reveal group">
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-robot text-6xl text-pink-500/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pack Infraestructura Vial</h3>
-                        <p class="text-gray-400 text-sm mb-4">Familias especializadas para carreteras, puentes y señalización vial.</p>
+                        <h3 class="text-xl font-bold mb-2 text-white">Automatización Python</h3>
+                        <p class="text-slate-400 text-sm mb-4">Scripts de Python para Revit API que permiten automatizar tareas complejas y generar reportes personalizados.</p>
                         <div class="flex items-center justify-between mb-4">
-                            <span class="text-3xl font-bold text-primary">$40</span>
-                            <span class="text-gray-500 text-sm">USD</span>
+                            <span class="text-2xl font-bold text-cyan-400">€89.99</span>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
-                        <button onclick="comprar('Pack Infraestructura Vial', 40)" class="w-full py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all duration-300 flex items-center justify-center gap-2">
-                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        <button class="w-full py-3 bg-slate-700 hover:bg-cyan-600 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            <i class="fas fa-cart-plus"></i>
+                            Añadir al Carrito
                         </button>
                     </div>
                 </div>
 
-                <!-- Producto 6 - Premium -->
-                <div class="glass rounded-2xl overflow-hidden card-hover group border-2 border-primary/50 relative">
-                    <div class="absolute top-0 right-0 bg-primary text-dark text-xs font-bold px-4 py-1 rounded-bl-lg z-10">MEJOR VALOR</div>
-                    <div class="h-56 bg-gradient-to-br from-primary/30 to-purple-600/30 flex items-center justify-center">
-                        <i class="fas fa-crown text-6xl text-yellow-400/60 group-hover:scale-110 transition-transform duration-500"></i>
+                <!-- Producto 6 -->
+                <div class="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700 card-hover tech-border reveal group">
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-graduation-cap text-6xl text-yellow-500/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Pack Completo Profesional</h3>
-                        <p class="text-gray-400 text-sm mb-4">Incluye todos los productos anteriores + soporte prioritario + actualizaciones de por vida.</p>
+                        <h3 class="text-xl font-bold mb-2 text-white">Curso: Dynamo Avanzado</h3>
+                        <p class="text-slate-400 text-sm mb-4">Curso completo de 20 horas para dominar Dynamo. Incluye proyectos prácticos y certificado de finalización.</p>
                         <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <span class="text-3xl font-bold text-primary">$150</span>
-                                <span class="text-gray-500 text-sm line-through ml-2">$200</span>
+                            <span class="text-2xl font-bold text-cyan-400">€129.99</span>
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
-                            <span class="text-green-400 text-xs font-bold bg-green-400/10 px-2 py-1 rounded">AHORRA 25%</span>
                         </div>
-                        <button onclick="comprar('Pack Completo Profesional', 150)" class="w-full py-3 btn-primary text-dark font-bold rounded-lg flex items-center justify-center gap-2">
-                            <i class="fas fa-crown"></i> Comprar Ahora
+                        <button class="w-full py-3 bg-slate-700 hover:bg-cyan-600 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            <i class="fas fa-cart-plus"></i>
+                            Añadir al Carrito
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-12 text-center">
-                <p class="text-gray-400 mb-4">¿Necesitas algo personalizado?</p>
-                <a href="https://wa.me/573105173583?text=Hola%20Andrés,%20necesito%20un%20producto%20personalizado%20BIM" target="_blank" class="inline-flex items-center gap-2 text-primary hover:text-white transition-colors text-lg">
-                    <i class="fab fa-whatsapp text-xl"></i>
-                    Contáctame para desarrollar soluciones a tu medida
+            <div class="mt-12 text-center reveal">
+                <p class="text-slate-400 mb-4">¿Necesitas algo personalizado? Podemos desarrollarlo para ti.</p>
+                <a href="#contacto" class="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">
+                    Solicitar desarrollo personalizado <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Servicios Section -->
-    <section id="servicios" class="py-24 bg-darker/50">
+    <section id="servicios" class="py-24 bg-slate-800/30 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4">NUESTROS <span class="text-primary">SERVICIOS</span></h2>
-                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
-                <p class="text-xl text-gray-400">Soluciones BIM Integrales</p>
-                <p class="text-gray-500 mt-2 max-w-2xl mx-auto">Ofrecemos servicios especializados para implementar y optimizar la metodología BIM en tus proyectos de construcción.</p>
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Soluciones BIM <span class="gradient-text">Integrales</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Ofrecemos servicios especializados para implementar y optimizar la metodología BIM en tus proyectos de construcción.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="glass rounded-2xl p-8 card-hover">
-                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-cube text-3xl text-primary"></i>
+                <div class="group p-8 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:bg-slate-800/50 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-cube text-2xl text-cyan-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Modelado BIM Avanzado</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Desarrollo de modelos 3D inteligentes en Revit para arquitectura, estructuras e instalaciones MEP con alto nivel de detalle.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Modelado BIM</h3>
+                    <p class="text-slate-400 leading-relaxed">Creación de modelos 3D paramétricos en Revit para arquitectura, estructura e instalaciones con nivel de desarrollo LOD 300-500.</p>
                 </div>
 
-                <div class="glass rounded-2xl p-8 card-hover">
-                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-cogs text-3xl text-primary"></i>
+                <div class="group p-8 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:bg-slate-800/50 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-project-diagram text-2xl text-purple-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Automatización Dynamo</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Scripts personalizados para automatizar tareas repetitivas y optimizar flujos de trabajo en Revit.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Coordinación BIM</h3>
+                    <p class="text-slate-400 leading-relaxed">Detección de interferencias, resolución de conflictos y coordinación multidisciplinar mediante Navisworks y BIM 360.</p>
                 </div>
 
-                <div class="glass rounded-2xl p-8 card-hover">
-                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-object-group text-3xl text-primary"></i>
+                <div class="group p-8 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:bg-slate-800/50 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-green-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-2xl text-green-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Desarrollo de Familias</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Creación de familias Revit paramétricas personalizadas según tus necesidades específicas de proyecto.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Automatización</h3>
+                    <p class="text-slate-400 leading-relaxed">Desarrollo de scripts personalizados en Dynamo y Python para automatizar flujos de trabajo repetitivos y aumentar la productividad.</p>
                 </div>
 
-                <div class="glass rounded-2xl p-8 card-hover">
-                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-clipboard-check text-3xl text-primary"></i>
+                <div class="group p-8 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:bg-slate-800/50 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chalkboard-teacher text-2xl text-orange-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Coordinación BIM</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Detección de interferencias y coordinación multidisciplinar para evitar conflictos en obra.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Capacitación</h3>
+                    <p class="text-slate-400 leading-relaxed">Formación personalizada para equipos en metodología BIM, manejo de Revit, Dynamo y estándares de implementación.</p>
                 </div>
 
-                <div class="glass rounded-2xl p-8 card-hover">
-                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-file-alt text-3xl text-primary"></i>
+                <div class="group p-8 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:bg-slate-800/50 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-pink-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-clipboard-check text-2xl text-pink-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Plantillas Profesionales</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Plantillas de Revit configuradas con estándares de empresa y automatizaciones integradas.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Gestión de Proyectos</h3>
+                    <p class="text-slate-400 leading-relaxed">Implementación de BIM Execution Plans, definición de LOD/LOI y gestión de la información durante todo el ciclo de vida del proyecto.</p>
                 </div>
 
-                <div class="glass rounded-2xl p-8 card-hover">
-                    <div class="w-16 h-16 service-icon rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-graduation-cap text-3xl text-primary"></i>
+                <div class="group p-8 rounded-2xl bg-slate-800/30 border border-slate-700 hover:border-cyan-500/50 transition-all duration-300 hover:bg-slate-800/50 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-drafting-compass text-2xl text-blue-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Capacitación BIM</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Formación personalizada en Revit, Dynamo y metodología BIM para equipos de trabajo.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Desarrollo de Familias</h3>
+                    <p class="text-slate-400 leading-relaxed">Creación de familias Revit paramétricas personalizadas según tus necesidades específicas y estándares de fabricante.</p>
                 </div>
             </div>
 
-            <div class="mt-12 text-center glass rounded-2xl p-8 max-w-3xl mx-auto">
-                <h3 class="text-xl font-bold mb-2">¿Necesitas un servicio personalizado?</h3>
-                <p class="text-gray-400 mb-4">Contáctanos y desarrollamos una solución a tu medida.</p>
-                <a href="https://wa.me/573105173583" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-full transition-all duration-300">
-                    <i class="fab fa-whatsapp"></i> Hablar por WhatsApp
+            <div class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-600/10 border border-cyan-500/20 text-center reveal">
+                <h3 class="text-2xl font-bold mb-4">¿Necesitas un servicio personalizado?</h3>
+                <p class="text-slate-400 mb-6 max-w-2xl mx-auto">Contáctanos y desarrollamos una solución a tu medida, adaptada específicamente a los requerimientos de tu proyecto.</p>
+                <a href="#contacto" class="inline-flex items-center gap-2 px-8 py-3 bg-cyan-500 hover:bg-cyan-600 rounded-full font-semibold transition-colors">
+                    <i class="fas fa-envelope"></i>
+                    Solicitar Información
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Portafolio Section -->
-    <section id="portafolio" class="py-24">
+    <section id="portafolio" class="py-24 bg-slate-900 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4">PROYECTOS <span class="text-primary">DESTACADOS</span></h2>
-                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
-                <p class="text-gray-400">Conoce algunos de los proyectos donde hemos implementado soluciones BIM exitosas.</p>
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Proyectos <span class="gradient-text">Destacados</span></h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Conoce algunos de los proyectos donde hemos implementado soluciones BIM exitosas, optimizando procesos y resultados.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Hospital Central', 'Centro médico de alta complejidad con 200 camas. Coordinación BIM integral de todas las especialidades MEP, sistemas hidrosanitarios y protección contra incendios.', 'hospital')">
-                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-blue-800 flex items-center justify-center">
-                        <i class="fas fa-hospital-alt text-8xl text-white/20"></i>
-                    </div>
-                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Hospital Central</h3>
-                        <p class="text-gray-300 text-sm">Coordinación BIM MEP - Hidrosanitario - PCI</p>
-                    </div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Conjunto Residencial', 'Complejo de 5 torres residenciales con 150 apartamentos. Modelado arquitectónico y estructural completo con coordinación de instalaciones.', 'residential')">
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-800 flex items-center justify-center">
-                        <i class="fas fa-building text-8xl text-white/20"></i>
-                    </div>
-                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Conjunto Residencial</h3>
-                        <p class="text-gray-300 text-sm">5 torres - 150 apartamentos - Modelado integral</p>
+                <div class="group relative overflow-hidden rounded-2xl reveal cursor-pointer" onclick="showProjectDetail('Proyecto Residencial Torre Norte')">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop" alt="Proyecto 1" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-cyan-400 text-sm font-semibold mb-2">Residencial</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Torre Residencial Norte</h3>
+                        <p class="text-slate-300 text-sm">Modelado BIM completo y coordinación MEP para torre de 25 pisos.</p>
                     </div>
                 </div>
 
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Vía Express', 'Proyecto de infraestructura vial de 15km incluyendo puentes, intercambios y señalización. Modelado BIM para coordinación de obra.', 'road')">
-                    <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-teal-800 flex items-center justify-center">
-                        <i class="fas fa-road text-8xl text-white/20"></i>
-                    </div>
-                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Vía Express</h3>
-                        <p class="text-gray-300 text-sm">15km infraestructura vial - Puentes e intercambios</p>
-                    </div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Centro Comercial', 'Plaza comercial con 50 locales, estacionamiento subterráneo y sistemas MEP complejos. Coordinación BIM y detección de interferencias.', 'commercial')">
-                    <div class="absolute inset-0 bg-gradient-to-br from-orange-600 to-red-800 flex items-center justify-center">
-                        <i class="fas fa-store text-8xl text-white/20"></i>
-                    </div>
-                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Centro Comercial</h3>
-                        <p class="text-gray-300 text-sm">50 locales - Coordinación MEP - Estacionamiento</p>
+                <div class="group relative overflow-hidden rounded-2xl reveal cursor-pointer" onclick="showProjectDetail('Centro Comercial Metropolitano')">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop" alt="Proyecto 2" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-cyan-400 text-sm font-semibold mb-2">Comercial</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Centro Comercial Metropolitano</h3>
+                        <p class="text-slate-300 text-sm">Implementación BIM y automatización de planos para 15,000 m².</p>
                     </div>
                 </div>
 
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Torre de Oficinas', 'Edificio corporativo de 25 pisos con sistemas inteligentes y certificación LEED. Modelado BIM 7D para facility management.', 'office')">
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-blue-900 flex items-center justify-center">
-                        <i class="fas fa-city text-8xl text-white/20"></i>
-                    </div>
-                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Torre de Oficinas</h3>
-                        <p class="text-gray-300 text-sm">25 pisos - LEED - BIM 7D - Facility Management</p>
+                <div class="group relative overflow-hidden rounded-2xl reveal cursor-pointer" onclick="showProjectDetail('Hospital Regional')">
+                    <img src="https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?w=800&h=600&fit=crop" alt="Proyecto 3" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-cyan-400 text-sm font-semibold mb-2">Salud</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Hospital Regional</h3>
+                        <p class="text-slate-300 text-sm">Coordinación BIM multidisciplinar y gestión de instalaciones médicas.</p>
                     </div>
                 </div>
 
-                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-80" onclick="openProjectModal('Clínica Especializada', 'Centro de especialidades médicas con equipamiento de alta tecnología. Especialización en sistemas hidrosanitarios y gases medicinales.', 'clinic')">
-                    <div class="absolute inset-0 bg-gradient-to-br from-teal-600 to-cyan-800 flex items-center justify-center">
-                        <i class="fas fa-clinic-medical text-8xl text-white/20"></i>
+                <div class="group relative overflow-hidden rounded-2xl reveal cursor-pointer" onclick="showProjectDetail('Estadio Municipal')">
+                    <img src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&h=600&fit=crop" alt="Proyecto 4" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-cyan-400 text-sm font-semibold mb-2">Deportivo</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Estadio Municipal</h3>
+                        <p class="text-slate-300 text-sm">Modelado estructural completo y simulaciones de evacuación.</p>
                     </div>
-                    <div class="portfolio-overlay absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Clínica Especializada</h3>
-                        <p class="text-gray-300 text-sm">Equipamiento médico - Gases medicinales - PCI</p>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl reveal cursor-pointer" onclick="showProjectDetail('Campus Universitario')">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop" alt="Proyecto 5" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-cyan-400 text-sm font-semibold mb-2">Educación</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Campus Universitario</h3>
+                        <p class="text-slate-300 text-sm">Masterplan BIM y desarrollo de familias paramétricas personalizadas.</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl reveal cursor-pointer" onclick="showProjectDetail('Torre Corporativa')">
+                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&h=600&fit=crop" alt="Proyecto 6" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <span class="text-cyan-400 text-sm font-semibold mb-2">Corporativo</span>
+                        <h3 class="text-xl font-bold text-white mb-2">Torre Corporativa</h3>
+                        <p class="text-slate-300 text-sm">Automatización de documentación y extracción de datos para FM.</p>
                     </div>
                 </div>
             </div>
@@ -503,315 +505,233 @@
     </section>
 
     <!-- Sobre Mí Section -->
-    <section id="sobre-mi" class="py-24 bg-darker/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-6">SOBRE <span class="text-primary">MÍ</span></h2>
-                    <div class="w-24 h-1 bg-primary rounded-full mb-8"></div>
-                    
-                    <h3 class="text-2xl font-bold mb-4 text-white">Especialista BIM con Pasión por la Innovación</h3>
-                    
-                    <div class="space-y-4 text-gray-300 leading-relaxed mb-8">
-                        <p>
-                            Soy <strong class="text-primary">Andrés Bolaños Pérez</strong>, Ingeniero Civil especializado en metodología BIM con más de 10 años de experiencia en el sector de la construcción. 
-                        </p>
-                        <p>
-                            He liderado la implementación BIM en proyectos de diversa escala, desde <strong>edificaciones residenciales</strong> hasta <strong>grandes infraestructuras viales</strong> y <strong>centros hospitalarios</strong>.
-                        </p>
-                        <p>
-                            Mi enfoque combina el conocimiento técnico con la programación visual y textual para crear soluciones automatizadas que optimizan los flujos de trabajo BIM. He desarrollado cientos de familias personalizadas y scripts de automatización.
-                        </p>
-                    </div>
-
-                    <div class="glass rounded-xl p-6 mb-6">
-                        <h4 class="font-bold text-primary mb-4 flex items-center gap-2">
-                            <i class="fas fa-user-graduate"></i> Credenciales
-                        </h4>
-                        <ul class="space-y-2 text-sm text-gray-300">
-                            <li><i class="fas fa-check text-primary mr-2"></i>Ingeniero Civil</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i>Esp. Gerencia de Proyectos</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i>Esp. Project Management</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i>Coordinador BIM_CIP</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i>Master BIM Manager en Edificaciones</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i>Revit MEP Expert</li>
-                            <li><i class="fas fa-check text-primary mr-2"></i>Especialista Hidrosanitario y PCI</li>
-                        </ul>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="glass rounded-lg p-4 text-center">
-                            <i class="fas fa-home text-primary text-2xl mb-2"></i>
-                            <p class="text-sm font-semibold">Vivienda</p>
-                        </div>
-                        <div class="glass rounded-lg p-4 text-center">
-                            <i class="fas fa-road text-primary text-2xl mb-2"></i>
-                            <p class="text-sm font-semibold">Infraestructura Vial</p>
-                        </div>
-                        <div class="glass rounded-lg p-4 text-center">
-                            <i class="fas fa-hospital text-primary text-2xl mb-2"></i>
-                            <p class="text-sm font-semibold">Centros Hospitalarios</p>
-                        </div>
-                        <div class="glass rounded-lg p-4 text-center">
-                            <i class="fas fa-fire-extinguisher text-primary text-2xl mb-2"></i>
-                            <p class="text-sm font-semibold">Sistemas PCI</p>
+    <section id="sobre-mi" class="py-24 bg-slate-800/30 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan-500/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl opacity-20 blur-xl"></div>
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop" alt="Andres BIM Specialist" class="relative rounded-2xl shadow-2xl w-full object-cover h-[600px]">
+                        <div class="absolute -bottom-6 -right-6 bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
+                                    <i class="fas fa-award text-cyan-400 text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-white">10+</div>
+                                    <div class="text-sm text-slate-400">Años de Experiencia</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="relative">
-                    <div class="glass rounded-2xl p-8 relative z-10">
-                        <div class="w-full h-64 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg mb-6 flex items-center justify-center border border-primary/20">
-                            <div class="text-center">
-                                <div class="w-24 h-24 mx-auto bg-primary/30 rounded-full flex items-center justify-center mb-4">
-                                    <span class="text-4xl font-orbitron font-bold text-primary">AB</span>
-                                </div>
-                                <p class="text-primary font-orbitron font-bold">Ing. Andrés Bolaños</p>
-                                <p class="text-gray-400 text-sm">REVIT BIM MODELING</p>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3 text-gray-300">
-                                <i class="fas fa-map-marker-alt text-primary w-5"></i>
-                                <span>Santa Marta - Magdalena, Colombia</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-300">
-                                <i class="fas fa-phone text-primary w-5"></i>
-                                <span>(+57) 310 517 35 83</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-300">
-                                <i class="fas fa-envelope text-primary w-5"></i>
-                                <span>andres.bim@hotmail.com</span>
-                            </div>
-                        </div>
+                <div class="reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Especialista BIM con <span class="gradient-text">Pasión por la Innovación</span></h2>
+                    
+                    <div class="space-y-6 text-slate-300 text-lg leading-relaxed">
+                        <p>
+                            Soy Ingeniero Civil especializado en metodología BIM con más de 10 años de experiencia en el sector de la construcción. He liderado la implementación BIM en proyectos de diversa escala, desde edificaciones residenciales hasta grandes infraestructuras.
+                        </p>
+                        <p>
+                            Mi enfoque combina el conocimiento técnico con la programación visual y textual para crear soluciones automatizadas que optimizan los flujos de trabajo BIM. He desarrollado cientos de familias personalizadas y scripts de automatización que han ayudado a empresas a aumentar su productividad.
+                        </p>
+                    </div>
 
-                        <div class="flex gap-4 mt-6">
-                            <a href="https://linkedin.com/in/andresbim" target="_blank" class="flex-1 py-2 bg-[#0077b5]/20 border border-[#0077b5] text-[#0077b5] hover:bg-[#0077b5] hover:text-white rounded-lg transition-all text-center text-sm">
-                                <i class="fab fa-linkedin mr-1"></i>andresbim
-                            </a>
-                            <a href="https://instagram.com/ing.andresbim" target="_blank" class="flex-1 py-2 bg-[#e4405f]/20 border border-[#e4405f] text-[#e4405f] hover:bg-[#e4405f] hover:text-white rounded-lg transition-all text-center text-sm">
-                                <i class="fab fa-instagram mr-1"></i>ing.andresbim
-                            </a>
+                    <div class="mt-8 grid grid-cols-2 gap-6">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-check text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Autodesk Certified</h4>
+                                <p class="text-sm text-slate-400">Professional - Revit</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-check text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Autodesk Certified</h4>
+                                <p class="text-sm text-slate-400">Instructor</p>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl"></div>
-                    <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-secondary/20 rounded-full blur-2xl"></div>
+
+                    <div class="mt-10 pt-10 border-t border-slate-700">
+                        <h3 class="text-xl font-bold mb-6 text-white">Especialidades</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">Modelado BIM Avanzado</span>
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">Coordinación Multidisciplinar</span>
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">Programación Dynamo/Python</span>
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">Gestión de Proyectos BIM</span>
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">Desarrollo de Familias</span>
+                            <span class="px-4 py-2 rounded-full bg-slate-800 border border-slate-700 text-sm text-slate-300">Automatización de Procesos</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contacto Section -->
-    <section id="contacto" class="py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="font-orbitron text-4xl md:text-5xl font-bold mb-4">CONTACTO</h2>
-                <div class="w-24 h-1 bg-primary mx-auto rounded-full mb-6"></div>
-                <p class="text-xl text-gray-400">¿Listo para impulsar tu proyecto BIM?</p>
+    <section id="contacto" class="py-24 bg-slate-900 relative">
+        <div class="absolute inset-0 grid-pattern opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">¿Listo para impulsar tu <span class="gradient-text">proyecto BIM</span>?</h2>
+                <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                    Contáctanos para discutir tus necesidades. Estamos aquí para ayudarte a implementar soluciones BIM efectivas.
+                </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <a href="https://wa.me/573105173583" target="_blank" class="glass rounded-2xl p-8 text-center card-hover group">
-                    <div class="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fab fa-whatsapp text-3xl text-green-500"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">WhatsApp</h3>
-                    <p class="text-gray-400 text-sm mb-2">Respuesta inmediata</p>
-                    <p class="text-primary font-semibold">(+57) 310 517 35 83</p>
-                </a>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 reveal">
+                    <form class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 backdrop-blur-sm" onsubmit="handleSubmit(event)">
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Nombre</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors" placeholder="Tu nombre" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors" placeholder="tu@email.com" required>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Asunto</label>
+                            <select class="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-slate-600 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors">
+                                <option>Consulta General</option>
+                                <option>Servicios Personalizados</option>
+                                <option>Desarrollo de Familias</option>
+                                <option>Capacitación</option>
+                                <option>Soporte Técnico</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Mensaje</label>
+                            <textarea rows="5" class="w-full px-4 py-3 rounded-lg bg-slate-900/50 border border-slate-600 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-colors resize-none" placeholder="Describe tu proyecto o consulta..." required></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-semibold text-lg hover:shadow-lg hover:shadow-cyan-500/25 transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
 
-                <a href="mailto:andres.bim@hotmail.com" class="glass rounded-2xl p-8 text-center card-hover group">
-                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <i class="fas fa-envelope text-3xl text-primary"></i>
+                <div class="space-y-6 reveal">
+                    <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
+                            <i class="fas fa-envelope text-2xl text-cyan-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Email</h3>
+                        <p class="text-slate-400">contacto@andresbim.com</p>
+                        <p class="text-slate-400">soporte@andresbim.com</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Email</h3>
-                    <p class="text-gray-400 text-sm mb-2">andres.bim@hotmail.com</p>
-                    <p class="text-primary font-semibold">Enviar correo</p>
-                </a>
 
-                <div class="glass rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-share-alt text-3xl text-purple-500"></i>
+                    <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4">
+                            <i class="fas fa-phone text-2xl text-purple-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Teléfono</h3>
+                        <p class="text-slate-400">+34 612 345 678</p>
+                        <p class="text-slate-400 text-sm mt-1">Lun - Vie: 9:00 - 18:00</p>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Sígueme</h3>
-                    <div class="flex justify-center gap-4">
-                        <a href="https://linkedin.com/in/andresbim" target="_blank" class="w-10 h-10 bg-[#0077b5]/20 rounded-full flex items-center justify-center text-[#0077b5] hover:bg-[#0077b5] hover:text-white transition-all">
-                            <i class="fab fa-linkedin-in"></i>
+
+                    <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4">
+                            <i class="fas fa-map-marker-alt text-2xl text-green-400"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Ubicación</h3>
+                        <p class="text-slate-400">Madrid, España</p>
+                        <p class="text-slate-400 text-sm mt-1">Servicio remoto mundial</p>
+                    </div>
+
+                    <div class="flex gap-4 justify-center pt-4">
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all">
+                            <i class="fab fa-linkedin-in text-xl"></i>
                         </a>
-                        <a href="https://instagram.com/ing.andresbim" target="_blank" class="w-10 h-10 bg-[#e4405f]/20 rounded-full flex items-center justify-center text-[#e4405f] hover:bg-[#e4405f] hover:text-white transition-all">
-                            <i class="fab fa-instagram"></i>
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500/50 transition-all">
+                            <i class="fab fa-instagram text-xl"></i>
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="mt-12 max-w-2xl mx-auto glass rounded-2xl p-8">
-                <h3 class="text-2xl font-bold mb-6 text-center">Envíame un mensaje</h3>
-                <form onsubmit="event.preventDefault(); alert('Mensaje enviado. Te contactaré pronto.');" class="space-y-4">
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Nombre" class="w-full px-4 py-3 bg-dark/50 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white" required>
-                        <input type="email" placeholder="Email" class="w-full px-4 py-3 bg-dark/50 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white" required>
-                    </div>
-                    <input type="text" placeholder="Asunto" class="w-full px-4 py-3 bg-dark/50 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white" required>
-                    <textarea rows="4" placeholder="¿En qué puedo ayudarte?" class="w-full px-4 py-3 bg-dark/50 border border-gray-700 rounded-lg focus:border-primary focus:outline-none text-white" required></textarea>
-                    <button type="submit" class="w-full py-3 btn-primary text-dark font-bold rounded-lg">
-                        <i class="fas fa-paper-plane mr-2"></i>Enviar Mensaje
-                    </button>
-                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-white/10 py-12 bg-darker">
+    <footer class="bg-slate-950 border-t border-slate-800 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center gap-4">
-                    <div class="text-2xl font-orbitron font-bold text-primary">AB</div>
-                    <div>
-                        <h4 class="font-orbitron font-bold text-sm tracking-wider">ANDRÉS BOLAÑOS</h4>
-                        <p class="text-xs text-gray-600">REVIT BIM MODELING © 2024</p>
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-building text-white text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight">Andres<span class="text-cyan-400">BIM</span></span>
                     </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        Especialista en soluciones BIM, automatización y desarrollo de contenido para Revit. Transformando la industria de la construcción mediante la tecnología.
+                    </p>
                 </div>
-                <div class="flex gap-6 text-sm text-gray-500">
-                    <span>Santa Marta, Colombia</span>
-                    <span>|</span>
-                    <a href="https://wa.me/573105173583" class="hover:text-primary transition-colors">(+57) 310 517 35 83</a>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#inicio" class="hover:text-cyan-400 transition-colors">Inicio</a></li>
+                        <li><a href="#tienda" class="hover:text-cyan-400 transition-colors">Tienda</a></li>
+                        <li><a href="#servicios" class="hover:text-cyan-400 transition-colors">Servicios</a></li>
+                        <li><a href="#portafolio" class="hover:text-cyan-400 transition-colors">Portafolio</a></li>
+                    </ul>
                 </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Términos de Uso</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition-colors">Licencias</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-sm">© 2024 Andres BIM. Todos los derechos reservados.</p>
+                <p class="text-slate-600 text-sm">Diseñado con <i class="fas fa-heart text-red-500 mx-1"></i> para la comunidad BIM</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal de Compra -->
-    <div id="compra-modal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="glass rounded-2xl max-w-md w-full p-6 border border-primary/30 relative">
-            <button onclick="cerrarModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-            
-            <div class="text-center mb-6">
-                <i class="fas fa-shopping-bag text-4xl text-primary mb-4"></i>
-                <h3 class="text-2xl font-bold">Finalizar Compra</h3>
-            </div>
-            
-            <div id="compra-detalle" class="glass rounded-xl p-4 mb-6 bg-dark/50">
-                <!-- Se llena con JS -->
-            </div>
-            
-            <div class="space-y-3">
-                <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 text-sm">
-                    <p class="text-yellow-400 font-semibold mb-2"><i class="fas fa-info-circle mr-2"></i>Proceso de compra:</p>
-                    <ol class="list-decimal list-inside space-y-1 text-gray-300 text-xs">
-                        <li>Realiza el pago seguro por PayPal</li>
-                        <li>Descarga tu comprobante de pago</li>
-                        <li>Envíalo por WhatsApp junto con tu solicitud</li>
-                        <li>Recibirás tus archivos en máximo 24 horas</li>
-                    </ol>
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm">
+        <div class="bg-slate-800 rounded-2xl p-8 max-w-md w-full border border-slate-700 shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="text-center">
+                <div class="w-16 h-16 rounded-full bg-cyan-500/10 flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-info-circle text-3xl text-cyan-400"></i>
                 </div>
-                
-                <a id="paypal-link" href="#" target="_blank" class="block w-full py-3 bg-[#0070BA] hover:bg-[#005ea6] text-white font-bold rounded-lg transition-colors text-center flex items-center justify-center gap-2">
-                    <i class="fab fa-paypal text-xl"></i> Pagar con PayPal
-                </a>
-                
-                <a href="https://wa.me/573105173583?text=Hola%20Andrés,%20acabo%20de%20realizar%20una%20compra%20en%20tu%20tienda%20BIM.%20Adjunto%20mi%20comprobante%20de%20pago." target="_blank" class="block w-full py-3 bg-green-600 hover:bg-green-500 text-white font-bold rounded-lg transition-colors text-center flex items-center justify-center gap-2">
-                    <i class="fab fa-whatsapp text-xl"></i> Enviar comprobante por WhatsApp
-                </a>
-                
-                <button onclick="cerrarModal()" class="w-full py-2 text-gray-400 hover:text-white text-sm transition-colors">
-                    Cancelar
+                <h3 class="text-xl font-bold text-white mb-2" id="modal-title">Información</h3>
+                <p class="text-slate-400 mb-6" id="modal-message">Mensaje del modal</p>
+                <button onclick="closeModal()" class="px-6 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-lg font-semibold transition-colors">
+                    Cerrar
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Modal de Proyecto -->
-    <div id="project-modal" class="fixed inset-0 bg-black/95 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="glass rounded-2xl max-w-2xl w-full p-8 border border-primary/30 relative">
-            <button onclick="cerrarProjectModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-            
-            <h3 id="project-title" class="text-3xl font-bold mb-4 text-primary font-orbitron"></h3>
-            
-            <div class="w-full h-64 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl mb-6 flex items-center justify-center border border-primary/20">
-                <i id="project-icon" class="fas fa-building text-8xl text-primary/30"></i>
-            </div>
-            
-            <p id="project-desc" class="text-gray-300 text-lg leading-relaxed mb-6"></p>
-            
-            <div class="flex flex-wrap gap-2 mb-6">
-                <span class="px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full text-xs">BIM</span>
-                <span class="px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full text-xs">Coordinación</span>
-                <span class="px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full text-xs">Revit</span>
-                <span class="px-3 py-1 bg-primary/10 border border-primary/30 text-primary rounded-full text-xs">MEP</span>
-            </div>
-            
-            <a href="https://wa.me/573105173583?text=Hola%20Andrés,%20vi%20tu%20proyecto%20y%20me%20interesa%20cotizar%20uno%20similar" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-dark font-bold rounded-lg transition-all">
-                <i class="fab fa-whatsapp"></i> Consultar proyecto similar
-            </a>
-        </div>
-    </div>
-
     <script>
+        // Mobile menu toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
-        function comprar(producto, precio) {
-            const modal = document.getElementById('compra-modal');
-            const detalle = document.getElementById('compra-detalle');
-            const paypalLink = document.getElementById('paypal-link');
-            
-            detalle.innerHTML = `
-                <h4 class="font-bold text-lg mb-2 text-white">${producto}</h4>
-                <p class="text-3xl font-bold text-primary">$${precio}.00 <span class="text-sm text-gray-500 font-normal">USD</span></p>
-            `;
-            
-            // IMPORTANTE: Reemplaza 'TU_USUARIO_PAYPAL' con tu usuario real de PayPal.Me
-            paypalLink.href = `https://paypal.me/TU_USUARIO_PAYPAL/${precio}`;
-            
-            modal.classList.remove('hidden');
-        }
-
-        function cerrarModal() {
-            document.getElementById('compra-modal').classList.add('hidden');
-        }
-
-        function openProjectModal(title, desc, type) {
-            document.getElementById('project-title').textContent = title;
-            document.getElementById('project-desc').textContent = desc;
-            
-            const icons = {
-                hospital: 'fa-hospital-alt',
-                residential: 'fa-building',
-                road: 'fa-road',
-                commercial: 'fa-store',
-                office: 'fa-city',
-                clinic: 'fa-clinic-medical'
-            };
-            
-            const iconClass = icons[type] || 'fa-building';
-            document.getElementById('project-icon').className = `fas ${iconClass} text-8xl text-primary/30`;
-            document.getElementById('project-modal').classList.remove('hidden');
-        }
-
-        function cerrarProjectModal() {
-            document.getElementById('project-modal').classList.add('hidden');
-        }
-
-        window.onclick = function(event) {
-            const modals = ['compra-modal', 'project-modal'];
-            modals.forEach(id => {
-                const modal = document.getElementById(id);
-                if (event.target === modal) {
-                    modal.classList.add('hidden');
-                }
-            });
-        }
-
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -823,25 +743,94 @@
             });
         });
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.add('bg-slate-900/90');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.remove('bg-slate-900/90');
+            }
+        });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Modal functions
+        function showModal(title, message) {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modal-content');
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modal-content');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        function showProjectDetail(projectName) {
+            showModal('Proyecto', `Detalles de ${projectName} - Próximamente más información detallada sobre este proyecto.`);
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            showModal('¡Mensaje Enviado!', 'Gracias por contactarnos. Te responderemos en menos de 24 horas.');
+            e.target.reset();
+        }
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Reveal animations
+        gsap.utils.toArray('.reveal').forEach(element => {
+            gsap.fromTo(element, 
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
                 }
-            });
-        }, observerOptions);
+            );
+        });
 
-        document.querySelectorAll('.glass').forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(el);
+        // Cart functionality
+        let cartCount = 0;
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.innerHTML.includes('Añadir al Carrito')) {
+                btn.addEventListener('click', function() {
+                    cartCount++;
+                    showModal('Carrito', 'Producto añadido al carrito correctamente.');
+                    this.innerHTML = '<i class="fas fa-check"></i> Añadido';
+                    this.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-cart-plus"></i> Añadir al Carrito';
+                        this.classList.remove('bg-green-600');
+                    }, 2000);
+                });
+            }
+        });
+
+        // Close modal on outside click
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
         });
     </script>
 </body>
